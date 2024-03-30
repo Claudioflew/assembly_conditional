@@ -16,7 +16,7 @@ ExitProcess PROTO, dwExitCode: dword
 
 .data
 val1  dword 19191919
-X	  dword ?
+X.    dword ?
 msg1  byte  "X: ", 0
 msg2  byte  "val1: ", 0
 msg3  byte  "EBX: ", 0
@@ -28,16 +28,16 @@ main PROC
 	mov  ecx, 19191921
 
 	cmp  ebx, ecx		; Evaluates ebx - ecx
-	ja   L1				; Jump to L1 if the result is above 0
+	ja   L1			; Jump to L1 if the result is above 0
 	cmp  ebx, val1		; Evaluates ebx - val1
-	ja	 L1				; Jump to L1 if the result is above 0
-	mov  X, 2			; Both conditions are false
-	jmp  next			; Want to skip L1
+	ja   L1			; Jump to L1 if the result is above 0
+	mov  X, 2		; Both conditions are false
+	jmp  next		; Want to skip L1
 
 L1: mov	 X, 1
 
 next:
-    call displayX
+    	call displayX
 	INVOKE ExitProcess, 0
 main ENDP
 
@@ -56,13 +56,13 @@ displayX PROC
 
 	mov  edx, offset msg2
 	call WriteString
-	mov	 eax, val1
+	mov  eax, val1
 	call WriteDec
 	call Crlf
 
 	mov  edx, offset msg3
 	call WriteString
-	mov	 eax, ebx
+	mov  eax, ebx
 	call WriteDec
 	call Crlf
 
